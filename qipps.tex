@@ -1,0 +1,189 @@
+% to change from draft mode to final mode
+% uncomment following line by removing the first %
+% and comment out second line by adding a % as 
+% first character. this will remove all the 
+% instructions for final printing
+
+%\documentclass[11pt,a4paper]{article}
+\documentclass[draft,11pt]{article}
+%----------------------------------------------------------------------------------
+\usepackage{subfiles} % allows breaking document into smaller sections
+\usepackage{graphicx} % allows inserting of graphics
+\usepackage[australian]{babel}  % multi-language handling
+\usepackage{epigraph} % epigram management
+\usepackage{fancyhdr} % fancy headers and footers
+\usepackage{tabu}     % provides tabular 
+\usepackage{xcolor} % provides colours
+\usepackage{colortbl}
+\usepackage{lastpage} % allows footer to have Page X of Y where Y is max number of pages
+
+
+% ----------------------------------------------------------------------------------
+% Print DRAFT on pages as well as instructions and todo notes
+%-------------------------------------------------------------
+\usepackage{ifdraft, blindtext}
+\ifdraft{%
+    \usepackage{todonotes}}{ % draft with TODOs
+    \usepackage[disable]{todonotes} % final without TODOs
+}
+
+%----------------------------------------------------------
+ %
+\ifdraft{%
+   \usepackage{draftwatermark}
+   \SetWatermarkText{Draft}
+   \SetWatermarkScale{5}
+   \SetWatermarkColor[rgb]{0.7,0,0}}{
+   \usepackage[nostamp]{draftwatermark}}
+
+% --------------------------------------------------------
+\usepackage[utf8]{inputenc}  % character encoding
+\usepackage[T1]{fontenc}     % T1 font encoding
+
+% set paragraph type and spacing
+\usepackage{setspace}
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+% alternate between landscape and portrait
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{caption}
+\usepackage{tabularx} % good tables
+\usepackage{booktabs} % easy table lines
+\usepackage{ragged2e} % 
+\usepackage{ltablex} % mulitpage tables
+
+%
+\usepackage{tikz} % for drawing mm, decision trees etc
+\usetikzlibrary{positioning}
+
+% enable hyerlinks
+\usepackage[linkcolor=blue]{hyperref}
+
+% glossaries and acronyms
+\usepackage{longtable}
+
+\usepackage[acronym,nomain]{glossaries}
+%\usepackage[printonlyused,withpage]{acronym}
+% abbreviations
+\newacronym{cc}{CC}{Climate Change}
+
+% allow changes to borders etc on pages
+\usepackage[outer=20mm,
+            inner=20mm,
+            vmargin=10mm,
+            includehead,
+            includefoot,
+            headheight=15pt
+           ]{geometry}
+
+% Heading and footer information
+\lhead{\bfseries Project Name}
+\chead{}
+\rhead{\bfseries Latest revision: \today}
+\lfoot{Organisation Name}
+\cfoot{}
+\rfoot{Page \thepage~of~\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%--------------------------------------------------------------
+% Bibliography settings
+%--------------------------------------------------------------
+\usepackage{csquotes} % needed to handle bibliography correctly
+ 
+%\usepackage[style=authoryear, 
+%            citestyle=authoryear, 
+%            maxnames=99,
+%            backend=biber]{biblatex}
+
+% numeric style - less intrusive into the document
+\usepackage[style=numeric,sorting=nyt,sortcites=true,backend=biber]{biblatex}
+
+\addbibresource{qipps.bib} % name of bibliography file to be used
+
+% hyperefs and url handling
+\usepackage{hyperref}
+
+%--------------------------------------------------------------
+% make the glossaries
+%\makeglossaries
+
+\begin{document}
+% create table of contents
+\pagestyle{fancy}
+\tableofcontents
+\newpage
+\clearpage
+% do not edit about this line
+
+\subfile{overview}
+\newpage
+\clearpage
+
+\subfile{exec_summary}
+\newpage
+\clearpage
+
+\subfile{project_mandate}
+\newpage
+\clearpage
+
+\subfile{needs_assessment}
+\newpage
+\clearpage
+
+\subfile{approach}
+\newpage
+\clearpage
+
+\subfile{goals}
+\newpage
+\clearpage
+\subfile{eval_framework}
+\newpage
+\clearpage
+
+\subfile{project_schedule}
+\newpage
+\clearpage
+
+\subfile{key_stakeholders}
+\newpage
+\clearpage
+
+\subfile{tasks}
+\newpage
+\clearpage
+
+\subfile{notes}
+\newpage
+\clearpage
+
+\subfile{risks_constraints}
+\newpage
+\clearpage
+
+\subfile{project_evaluation}
+\newpage
+\clearpage
+
+\subfile{recommendations}
+\newpage
+\clearpage
+
+% ifdraft include software needed to produce
+\ifdraft{
+\subfile{software}
+\newpage
+\clearpage
+\nocite{*} % include all references in bib file
+}{} % end of ifdraft
+
+\printbibliography[heading=bibintoc]
+
+% glossaries and nomenclature
+%\printglossary[style=long,nonumberlist,title=Acronyms]
+%\printglossary[title=Nomenclature]
+
+\end{document}

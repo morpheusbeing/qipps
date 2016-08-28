@@ -1,0 +1,9 @@
+{
+"Name"        : "Qipps Template",
+"Author"      : "Morpheus Being",
+"Date"        : "08.28.2016",
+"Version"     : "1.2",
+"Description" : "User template for writing qipps documents",
+"License"     : "Public Domain",
+"FilesToOpen" : "qipps.tex;overview.tex;qipps.pdf"
+}
